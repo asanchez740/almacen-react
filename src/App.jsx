@@ -126,7 +126,7 @@ export default function App() {
         </aside>
 
       {/* MAIN */}
-      <main className="flex-1 p-6 overflow-auto">
+     <main className="flex-1 p-6 overflow-y-auto ">
         <div className="mb-4 flex bg-white p-2 rounded shadow w-1/3">
           <Search />
           <input
@@ -146,10 +146,6 @@ export default function App() {
         {gondola && (
           <>
             <h2 className="text-xl font-bold mb-2">{gondola.nombre}</h2>
-    		
-
-
-
               {gondola.tipo === "simple" && (
                   <div className="flex gap-2 mb-4">
 
@@ -164,7 +160,6 @@ export default function App() {
                       placeholder="Nueva división"
                       className="border p-2 rounded-lg bg-white"
                     />
-
                     <button
                       onClick={() => {
                         const nombre = divisionInputs[gondola.id];
@@ -182,34 +177,36 @@ export default function App() {
                     >
                       Agregar División
                     </button>
-
                   </div>
                 )}
 
 
          <div
-            className="grid gap-3 items-start"
+            className="grid gap-4 content-start"
             style={{
               gridTemplateColumns:
                 gondola.tipo === "matriz"
-                  ? `repeat(${gondola.columnas}, minmax(160px, 1fr))`
-                  : "repeat(auto-fill, minmax(180px, 1fr))",
-            }}
-          >
+                  ? `repeat(${gondola.columnas}, 180px)`
+                  : "repeat(auto-fill, 180px)",
+              }}
+        >
        {gondola.divisiones?.map((d) => (
         <div
             key={d.id}
             className="
               bg-white
-              p-2
-              rounded-lg
-              shadow
+              p-3
+              rounded-xl
+              shadow-sm
               border
               border-gray-200
               flex
               flex-col
               h-[220px]
-              w-[180px]
+              min-w-[170px]
+              max-w-[190px]
+              transition-all
+              hover:shadow-md
             "
         >
               <div className="flex justify-between">
@@ -219,9 +216,20 @@ export default function App() {
                         const nombre = prompt("Editar", d.nombre);
                         if (nombre) updateDivision(d.id, nombre);
                       }}>✏️</button>
-                      <button onClick={() => {
-                        if (confirm("Eliminar?")) deleteDivision(d.id);
-                      }}>🗑️</button>
+                      
+
+                        {gondola.tipo === "simple" && (
+                          <button
+                            onClick={() => {
+                              if (confirm("Eliminar?")) deleteDivision(d.id);
+                            }}
+                          >
+                            🗑️
+                          </button>
+                        )}
+
+
+
                     </div>
               </div>
 
@@ -241,9 +249,6 @@ export default function App() {
                               min-w-0
                               text-sm
                             "
-
-
-
         		            >
                         <span className="truncate flex-1 mr-2">
           			           {p.nombre}
