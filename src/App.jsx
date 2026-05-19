@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAlmacen } from "./hooks/useAlmacen";
 import { Search } from "lucide-react";
+import "./styles/almacen.css";
 
 export default function App() {
   const {
@@ -34,33 +35,32 @@ export default function App() {
   	 };
 
   const gondola = gondolas.find((g) => g.id === selected);
-  console.log(gondola);
+  
   console.log(
   "FILAS:",
   gondola?.filas,
   "COLUMNAS:",
-  gondola?.columnas
-);
+  gondola?.columnas);
 
   return (
-    	<div className="h-screen flex bg-gray-100">
+    	<div className="app-container">
 
       	{/* SIDEBAR */}
-      	<aside className="w-64 bg-gray-900 text-white p-4">
-        	<h1 className="text-2xl font-bold mb-4">Almacén</h1>
+      	<aside className="sidebar">
+        	<h1 className="sidebar-title">Almacén</h1>
           <div className="space-y-2 mb-4">
 
                 <input
                   value={nombreGondola}
                   onChange={(e) => setNombreGondola(e.target.value)}
                   placeholder="Nombre góndola"
-                  className="w-full p-2 rounded bg-gray-800 text-white"
+                  className="sidebar-input"
                 />
 
                 <select
                   value={tipoGondola}
                   onChange={(e) => setTipoGondola(e.target.value)}
-                  className="w-full p-2 rounded bg-gray-800 text-white"
+                  className="sidebar-input"
                 >
                   <option value="simple">Simple</option>
                   <option value="matriz">Matriz</option>
@@ -73,7 +73,7 @@ export default function App() {
                       value={filas}
                       onChange={(e) => setFilas(Number(e.target.value))}
                       placeholder="Filas"
-                      className="w-full p-2 rounded bg-gray-800 text-white"
+                      className="sidebar-input"
                     />
 
                     <input
@@ -81,7 +81,7 @@ export default function App() {
                       value={columnas}
                       onChange={(e) => setColumnas(Number(e.target.value))}
                       placeholder="Columnas"
-                      className="w-full p-2 rounded bg-gray-800 text-white"
+                      className="sidebar-input"
                     />
                   </>
                 )}
@@ -99,14 +99,17 @@ export default function App() {
 
                     setNombreGondola("");
                   }}
-                  className="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded-lg"
+                  className="sidebar-button"
                 >
                   Crear Góndola
                 </button>
               </div>
 
               {gondolas.map((g) => (
-                   <div key={g.id} className="flex justify-between p-2 hover:bg-gray-800 rounded">
+                   <div
+                      key={g.id}
+                      className={`gondola-item ${selected === g.id ? "active" : ""}`}
+                    >
                    <span onClick={() => setSelected(g.id)} className="cursor-pointer">
                      {g.nombre}
                    </span>
@@ -126,7 +129,7 @@ export default function App() {
         </aside>
 
       {/* MAIN */}
-     <main className="flex-1 p-6 overflow-y-auto ">
+    <main className="main-content">
         <div className="mb-4 flex bg-white p-2 rounded shadow w-1/3">
           <Search />
           <input
@@ -145,7 +148,20 @@ export default function App() {
 
         {gondola && (
           <>
-            <h2 className="text-xl font-bold mb-2">{gondola.nombre}</h2>
+            <div className="gondola-header">
+
+              <h2 className="gondola-title">
+                📦 {gondola.nombre}
+              </h2>
+
+              <p className="gondola-subtitle">
+                {gondola.tipo === "matriz"
+                  ? `Matriz ${gondola.filas}x${gondola.columnas}`
+                  : "Góndola simple"}
+              </p>
+
+            </div>
+
               {gondola.tipo === "simple" && (
                   <div className="flex gap-2 mb-4">
 
@@ -180,36 +196,26 @@ export default function App() {
                   </div>
                 )}
 
-
-         <div
-            className="grid gap-4 content-start"
-            style={{
-              gridTemplateColumns:
-                gondola.tipo === "matriz"
-                  ? `repeat(${gondola.columnas}, 180px)`
-                  : "repeat(auto-fill, 180px)",
-              }}
-        >
+              <div
+                className={
+                  gondola.tipo === "matriz"
+                    ? "almacen-grid-matriz"
+                    : "almacen-grid-simple"
+                }
+                style={
+                  gondola.tipo === "matriz"
+                    ? {
+                        gridTemplateColumns: `repeat(${gondola.columnas}, 180px)`,
+                      }
+                    : {}
+                }
+              >
        {gondola.divisiones?.map((d) => (
         <div
             key={d.id}
-            className="
-              bg-white
-              p-3
-              rounded-xl
-              shadow-sm
-              border
-              border-gray-200
-              flex
-              flex-col
-              h-[220px]
-              min-w-[170px]
-              max-w-[190px]
-              transition-all
-              hover:shadow-md
-            "
+            className="division-card"
         >
-              <div className="flex justify-between">
+              <div className="division-header">
                   <b>{d.nombre}</b>
                     <div>
                       <button onClick={() => {
@@ -227,33 +233,19 @@ export default function App() {
                             🗑️
                           </button>
                         )}
-
-
-
                     </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto pr-1 space-y-2">
+              <div className="division-products">
       		        {d.productos?.map((p) => (
                       <div
           			           key={p.id}
-          			          
-                            className="
-                              flex
-                              items-center
-                              justify-between
-                              bg-gray-100
-                              px-2
-                              py-1
-                              rounded
-                              min-w-0
-                              text-sm
-                            "
+                            className="product-item"
         		            >
-                        <span className="truncate flex-1 mr-2">
+                        <span className="product-name">
           			           {p.nombre}
         		            </span>
-                            <div className="flex gap-2 shrink-0">
+                            <div className="product-actions">
                                 <button onClick={() => {
                                     const nombre = prompt("Editar", p.nombre);
                                     if (nombre) updateProducto(p.id, nombre);
@@ -272,7 +264,7 @@ export default function App() {
                             const nombre = prompt("Nuevo producto");
                             if (nombre) addProducto(d.id, nombre);
                         }}
-                          className="text-blue-600 text-sm mt-2" > 
+                          className="add-product-button" > 
                           + Producto
                     </button>
 

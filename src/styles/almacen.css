@@ -1,0 +1,194 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  background: #f3f4f6;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 280px;
+  background: #111827;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  border-right: 1px solid #1f2937;
+}
+
+.sidebar-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.sidebar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #1f2937;
+  color: white;
+}
+
+.sidebar-button {
+  width: 100%;
+  background: #2563eb;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar-button:hover {
+  background: #1d4ed8;
+}
+
+/* ITEM GONDOLA */
+
+.gondola-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.gondola-item:hover {
+  background: #1f2937;
+}
+
+.gondola-item.active {
+  background: #2563eb;
+}
+
+/* MAIN */
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}
+
+/* HEADER */
+
+.gondola-header {
+  margin-bottom: 20px;
+}
+
+.gondola-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.gondola-subtitle {
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* GRID */
+
+.almacen-grid-simple {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
+  gap: 16px;
+}
+
+.almacen-grid-matriz {
+  display: grid;
+  gap: 16px;
+  width: max-content;
+}
+
+/* DIVISION */
+
+.division-card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  min-width: 170px;
+  max-width: 190px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s;
+}
+
+.division-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.division-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.division-products {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* PRODUCTO */
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.product-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-product-button {
+  margin-top: 10px;
+  border: none;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.add-product-button:hover {
+  background: #dbeafe;
+}
