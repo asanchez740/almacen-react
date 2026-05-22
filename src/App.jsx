@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Login from "./pages/Login";
 import { useAlmacen } from "./hooks/useAlmacen";
 import { Search } from "lucide-react";
 import "./styles/almacen.css";
@@ -13,6 +14,7 @@ export default function App() {
     <BrowserRouter>
 
       <Routes>
+        <Route path="/login" element={<Login />} />
 
         <Route path="/" element={<Dashboard />} />
 
