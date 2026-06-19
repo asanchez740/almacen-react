@@ -57,19 +57,26 @@ export function AuthProvider({ children }) {
     setUser(user);
 
     // PROFILE + ROLE
-    const { data: profileData } = await supabase
-      .from("profiles")
-      .select(`
-        *,
-        roles (
-          id,
-          nombre
-        )
-      `)
-      .eq("id", user.id)
-      .single();
+   const { data: profileData, error: profileError } =
+        await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+
+      console.log(profileData);
+      console.log(profileError);
+
+
 
     setProfile(profileData);
+   if (!profileData) {
+
+      setLoading(false);
+
+      return;
+    }
+    
 
     // PERMISSIONS
     const { data: permissionsData } = await supabase

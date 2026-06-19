@@ -3,9 +3,12 @@ import { useAlmacen } from "../hooks/useAlmacen";
 import { Search } from "lucide-react";
 import "../styles/almacen.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; 
+import Header from "../components/Header.jsx";
 
 export default function App() {
   const navigate = useNavigate();
+
   const {
     gondolas,
     loading,
@@ -28,6 +31,7 @@ export default function App() {
   const [filas, setFilas] = useState(2);
   const [columnas, setColumnas] = useState(2)
   const [resultados, setResultados] = useState([]);
+
   const [divisionInputs, setDivisionInputs] = useState({});
 
  	 const handleSearch = async (value) => {
@@ -128,16 +132,14 @@ export default function App() {
                   </div>
                  </div>
                ))}
+               
+
         </aside>
 
       {/* MAIN */}
     <main className="main-content">
-        <button
-            onClick={() => navigate("/")}
-            className="mb-4 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg"
-          >
-        ← Inicio
-      </button>
+               <Header />
+       
         <div className="mb-4 flex bg-white p-2 rounded shadow w-1/3">
           <Search />
           <input

@@ -192,3 +192,152 @@
 .add-product-button:hover {
   background: #dbeafe;
 }
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.topbar-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  font-weight: 600;
+}
+
+.topbar-btn:hover {
+  transform: translateY(-1px);
+}
+
+.topbar-btn.logout {
+  background: #dc2626;
+  color: white;
+}
+
+
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-button {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.user-button:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 220px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: white;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f3f4f6;
+}
+
+.logout-item {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-button {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.user-button:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 220px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: white;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f3f4f6;
+}
+
+.logout-icon {
+  border: none;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+.logout-icon:hover {
+  background: #fee2e2;
+}
